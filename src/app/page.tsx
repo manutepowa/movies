@@ -2,13 +2,15 @@
 // export const revalidate = 10
 
 import FormMovie from "@/components/FormMovie"
+import ListOfMovies from "@/components/ListOfMovies"
 import { MoviesProvider } from "@/context/MoviesContext"
 
 export default function Home() {
   return (
-    <div>
+    <div className="w-full">
       <MoviesProvider>
         <FormMovie />
+        <ListOfMovies />
       </MoviesProvider>
     </div>
   )

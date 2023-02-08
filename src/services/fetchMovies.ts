@@ -7,6 +7,10 @@ export const searchMovies = async ({ query }: { query: string }) => {
     const response = await fetch(`${URL}&s=${query}`)
     const json = await response.json()
 
+    if (json.Response === "False") {
+      return []
+    }
+
     const movies: MovieType[] = json.Search.map((movie: any) => ({
       title: movie.Title,
       year: movie.Year,

@@ -24,7 +24,6 @@ interface MoviesContextType {
   query: string;
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   movies: MovieType[];
-  onFetchMovies: () => void;
 }
 
 const MoviesContext = createContext<MoviesContextType>({} as MoviesContextType)
@@ -37,16 +36,12 @@ function MoviesProvider({ children }: { children: React.ReactNode }) {
     e.preventDefault()
     setQuery(e.target.query.value)
   };
-  const onFetchMovies = () => {
-    setMovies([])
-  }
 
   useEffect(() => {
     if (query !== "") {
       searchMovies({ query })
-        .then((res) => {
-          console.log("asfasfsd")
-          setMovies(res.Search)
+        .then((m) => {
+          setMovies([...m])
         })
         .catch((err) => {
           console.log({ err })
@@ -55,15 +50,15 @@ function MoviesProvider({ children }: { children: React.ReactNode }) {
   }, [query])
 
   return (
-    <MoviesContext.Provider value={{ query, onFetchMovies, movies, handleSubmit }}>
+    <MoviesContext.Provider value={{ query, movies, handleSubmit }}>
       {children}
     </MoviesContext.Provider>
   )
 }
 
 export default function useMovies() {
-  const { query, onFetchMovies, movies, handleSubmit } =
+  const { query, movies, handleSubmit } =
     useContext<MoviesContextType>(MoviesContext)
-  return { query, onFetchMovies, movies, handleSubmit }
+  return { query, movies, handleSubmit }
 }
 export { MoviesProvider, MoviesContext }
