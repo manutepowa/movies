@@ -6,12 +6,10 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html className="h-full bg-white">
       <head />
       <body>
-        <div className="flex min-h-screen bg-slate-700 text-white w-full justify-center p-12">
-          {children}
-        </div>
+        <div className="h-screen overflow-hidden">{children}</div>
       </body>
     </html>
   )
