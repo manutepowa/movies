@@ -1,3 +1,3 @@
 export interface TitleProp {
-  title: string;
+  title: string
 }

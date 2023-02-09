@@ -1,11 +1,7 @@
 "use client"
-import { searchMovies } from "@/services/fetchMovies";
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-} from "react"
+import { searchMovies } from "@/services/fetchMovies"
+import { createContext, useCallback, useContext, useState } from "react"
+import debounce from "just-debounce-it"
 
 enum MovieEnum {
   Movie = "movie",
@@ -13,17 +9,18 @@ enum MovieEnum {
   Episode = "episode",
 }
 export interface MovieType {
-  title: string;
-  year: string;
-  imdbID: string;
-  type: MovieEnum;
-  poster: string;
+  title: string
+  year: string
+  imdbID: string
+  type: MovieEnum
+  poster: string
 }
 
 interface MoviesContextType {
-  query: string;
-  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  movies: MovieType[];
+  query: string
+  handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
+  movies: MovieType[]
+  updateQuery: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
 const MoviesContext = createContext<MoviesContextType>({} as MoviesContextType)
@@ -34,11 +31,15 @@ function MoviesProvider({ children }: { children: React.ReactNode }) {
   // handlesubmit form
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setQuery(e.target.query.value)
-  };
+    const { searchQuery } = e.target as typeof e.target & {
+      searchQuery: { value: string }
+    }
+    setQuery(searchQuery.value)
+    onSearchMovies(searchQuery.value)
+  }
 
-  useEffect(() => {
-    if (query !== "") {
+  const onSearchMovies = useCallback(
+    debounce(async (query: string) => {
       searchMovies({ query })
         .then((m) => {
           setMovies([...m])
@@ -46,19 +47,28 @@ function MoviesProvider({ children }: { children: React.ReactNode }) {
         .catch((err) => {
           console.log({ err })
         })
-    }
-  }, [query])
+    }, 500),
+    []
+  )
+  const updateQuery = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target
+    console.log({ value })
+    setQuery(value)
+    onSearchMovies(value)
+  }
 
   return (
-    <MoviesContext.Provider value={{ query, movies, handleSubmit }}>
+    <MoviesContext.Provider
+      value={{ query, movies, handleSubmit, updateQuery }}
+    >
       {children}
     </MoviesContext.Provider>
   )
 }
 
 export default function useMovies() {
-  const { query, movies, handleSubmit } =
+  const { query, movies, handleSubmit, updateQuery } =
     useContext<MoviesContextType>(MoviesContext)
-  return { query, movies, handleSubmit }
+  return { query, movies, handleSubmit, updateQuery }
 }
 export { MoviesProvider, MoviesContext }

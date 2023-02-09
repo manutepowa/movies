@@ -13,7 +13,7 @@ export default function ListOfMovies() {
         <ul className="grid grid-cols-3 gap-4">
           {movies.length > 0 ? (
             movies.map((movie: MovieType) => (
-              <li>
+              <li key={movie.imdbID}>
                 <h3>{movie.title}</h3>
                 <div>{movie.year}</div>
                 <img src={movie.poster} alt={movie.title} />

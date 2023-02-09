@@ -2,7 +2,11 @@ import { MovieType } from "@/context/MoviesContext"
 
 export const URL = "http://www.omdbapi.com/?apikey=4287ad07"
 
-export const searchMovies = async ({ query }: { query: string }) => {
+export const searchMovies = async ({
+  query,
+}: {
+  query: string
+}): Promise<MovieType[]> => {
   try {
     const response = await fetch(`${URL}&s=${query}`)
     const json = await response.json()
@@ -21,6 +25,6 @@ export const searchMovies = async ({ query }: { query: string }) => {
 
     return movies
   } catch (error) {
-    return error
+    return error as any
   }
 }

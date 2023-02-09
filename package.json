@@ -10,6 +10,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "just-debounce-it": "3.2.0",
     "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -37,7 +38,8 @@
   },
   "engines": {
     "node": ">=16.0.0",
-    "npm": ">=8.19.0",
-    "yarn": "Please use npm"
+    "pnpm": ">=7.26.0",
+    "yarn": "Please use pnpm",
+    "npm": "Please use pnpm"
   }
 }

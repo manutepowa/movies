@@ -14,7 +14,7 @@
     "prettier/prettier": [
       "error",
       {
-        "parser": "flow",
+        "parser": "typescript",
         "indent": [
           "error",
           2
