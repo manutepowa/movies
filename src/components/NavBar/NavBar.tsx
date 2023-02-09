@@ -78,7 +78,7 @@ export default function NavBarDesktop({
                   <nav aria-label="Sidebar" className="mt-5">
                     <div className="space-y-1 px-2">
                       {navigation.map((item) => (
-                        <NavLink item={item} />
+                        <NavLink item={item} key={item.name} />
                       ))}
                     </div>
                   </nav>
@@ -129,7 +129,7 @@ export default function NavBarDesktop({
               <nav className="mt-5 flex-1" aria-label="Sidebar">
                 <div className="space-y-1 px-2">
                   {navigation.map((item) => (
-                    <NavLink item={item} />
+                    <NavLink item={item} key={item.name} />
                   ))}
                 </div>
               </nav>
