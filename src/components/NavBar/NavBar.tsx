@@ -1,18 +1,13 @@
+"use client"
 import React, { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { XMarkIcon } from "@heroicons/react/24/outline"
-import { navigation } from "./navigationItems"
 import NavLink from "./NavLink"
+import { useSidebar } from "./SidebarContext"
+import { navigation } from "./navigationItems"
 
-type NavBarDesktopProps = {
-  sidebarOpen: boolean
-  setSidebarOpen: (sidebarOpen: boolean) => void
-}
-
-export default function NavBarDesktop({
-  sidebarOpen,
-  setSidebarOpen,
-}: NavBarDesktopProps): JSX.Element {
+export default function NavBarDesktop(): JSX.Element {
+  const { sidebarOpen, setSidebarOpen } = useSidebar()
   return (
     <>
       <Transition.Root show={sidebarOpen} as={Fragment}>

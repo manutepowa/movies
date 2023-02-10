@@ -1,9 +1,8 @@
+"use client"
 import { Bars3Icon } from "@heroicons/react/24/outline"
-export default function NavToggle({
-  toggleNav,
-}: {
-  toggleNav: (open: boolean) => void
-}) {
+import { useSidebar } from "./SidebarContext"
+export default function NavToggle() {
+  const { setSidebarOpen: toggleNav } = useSidebar()
   return (
     <div className="lg:hidden">
       <div className="flex items-center justify-between border-b border-gray-200 bg-gray-50 px-4 py-1.5">
