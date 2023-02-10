@@ -21,6 +21,7 @@ interface MoviesContextType {
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void
   movies: MovieType[]
   updateQuery: (e: React.ChangeEvent<HTMLInputElement>) => void
+  loading: boolean
 }
 
 const MoviesContext = createContext<MoviesContextType>({} as MoviesContextType)
@@ -28,6 +29,7 @@ const MoviesContext = createContext<MoviesContextType>({} as MoviesContextType)
 function MoviesProvider({ children }: { children: React.ReactNode }) {
   const [query, setQuery] = useState("")
   const [movies, setMovies] = useState<MovieType[]>([])
+  const [loading, setLoading] = useState<boolean>(false)
   // handlesubmit form
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -36,6 +38,7 @@ function MoviesProvider({ children }: { children: React.ReactNode }) {
     }
     setQuery(searchQuery.value)
     onSearchMovies(searchQuery.value)
+    setLoading(true)
   }
 
   const onSearchMovies = useCallback(
@@ -47,6 +50,7 @@ function MoviesProvider({ children }: { children: React.ReactNode }) {
         .catch((err) => {
           console.log({ err })
         })
+        .finally(() => setLoading(false))
     }, 500),
     []
   )
@@ -55,11 +59,12 @@ function MoviesProvider({ children }: { children: React.ReactNode }) {
     console.log({ value })
     setQuery(value)
     onSearchMovies(value)
+    setLoading(true)
   }
 
   return (
     <MoviesContext.Provider
-      value={{ query, movies, handleSubmit, updateQuery }}
+      value={{ query, movies, handleSubmit, updateQuery, loading }}
     >
       {children}
     </MoviesContext.Provider>
