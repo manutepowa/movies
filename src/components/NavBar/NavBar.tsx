@@ -3,11 +3,13 @@ import React, { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { XMarkIcon } from "@heroicons/react/24/outline"
 import NavLink from "./NavLink"
-import { useSidebar } from "./SidebarContext"
 import { navigation } from "./navigationItems"
+import useSidebarZustand from "@/context/NavZustand"
 
 export default function NavBarDesktop(): JSX.Element {
-  const { sidebarOpen, setSidebarOpen } = useSidebar()
+  const sidebarOpen = useSidebarZustand((state) => state.sidebarOpen)
+  const setSidebarOpen = useSidebarZustand((state) => state.setSidebarOpen)
+
   return (
     <>
       <Transition.Root show={sidebarOpen} as={Fragment}>
