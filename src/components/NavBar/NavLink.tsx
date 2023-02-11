@@ -24,7 +24,7 @@ export default function NavLink({
     >
       <item.icon
         className={classNames(
-          item.current
+          item.href === `/${segment}`
             ? "text-gray-500"
             : "text-gray-400 group-hover:text-gray-500",
           "mr-4 h-6 w-6"

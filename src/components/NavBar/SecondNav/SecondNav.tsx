@@ -6,7 +6,6 @@ import { classNames } from "../utils"
 export default function SecondNav() {
   const pathname = usePathname()
   const actualSimplePath = pathname?.split("/").slice(-2)[1]
-  console.log(pathname)
   return (
     <ul>
       <li>
