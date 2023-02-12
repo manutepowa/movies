@@ -3,9 +3,9 @@ import { ReactNode, Suspense } from "react"
 
 export default function Calendar2(): ReactNode {
   return (
-    <div>
-      <h1>Probando suspense</h1>
-      <ul>
+    <div className="flex flex-col">
+      <h1 className="text-2xl text-center">Probando suspense</h1>
+      <ul className="my-4">
         <li>
           Este texto se verá en la pantalla mientras que el contenido del
           componente que está cargando, se verá en loading
