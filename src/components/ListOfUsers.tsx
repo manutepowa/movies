@@ -14,7 +14,7 @@ export default async function ListOfUsers(): Promise<JSX.Element> {
     <div>
       {users &&
         users.map((user: any) => {
-          return <div>{user.name}</div>
+          return <div key={user.id}>{user.name}</div>
         })}
     </div>
   )
