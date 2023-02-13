@@ -3,11 +3,20 @@ import React, { Fragment } from "react"
 import { Dialog, Transition } from "@headlessui/react"
 import { XMarkIcon } from "@heroicons/react/24/outline"
 import NavLink from "./NavLink"
-import { useSidebar } from "./SidebarContext"
 import { navigation } from "./navigationItems"
+import useSidebarZustand from "@/context/NavZustand"
+import { shallow } from "zustand/shallow"
+import { useSelectedLayoutSegment } from "next/navigation"
 
 export default function NavBarDesktop(): JSX.Element {
-  const { sidebarOpen, setSidebarOpen } = useSidebar()
+  const { sidebarOpen, setSidebarOpen } = useSidebarZustand(
+    (state) => ({
+      sidebarOpen: state.sidebarOpen,
+      setSidebarOpen: state.setSidebarOpen,
+    }),
+    shallow
+  )
+  const segment = useSelectedLayoutSegment()
   return (
     <>
       <Transition.Root show={sidebarOpen} as={Fragment}>
@@ -73,7 +82,11 @@ export default function NavBarDesktop(): JSX.Element {
                   <nav aria-label="Sidebar" className="mt-5">
                     <div className="space-y-1 px-2">
                       {navigation.map((item) => (
-                        <NavLink item={item} key={item.name} />
+                        <NavLink
+                          item={item}
+                          segment={segment}
+                          key={item.name}
+                        />
                       ))}
                     </div>
                   </nav>
@@ -124,7 +137,7 @@ export default function NavBarDesktop(): JSX.Element {
               <nav className="mt-5 flex-1" aria-label="Sidebar">
                 <div className="space-y-1 px-2">
                   {navigation.map((item) => (
-                    <NavLink item={item} key={item.name} />
+                    <NavLink item={item} segment={segment} key={item.name} />
                   ))}
                 </div>
               </nav>
