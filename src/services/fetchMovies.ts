@@ -2,6 +2,14 @@ import { MovieType } from "@/context/MoviesContext"
 
 export const URL = "http://www.omdbapi.com/?apikey=4287ad07"
 
+interface MovieAPI {
+  Title: string
+  Year: string
+  imdbID: string
+  Type: string
+  Poster: string
+}
+
 export const searchMovies = async ({
   query,
 }: {
@@ -15,7 +23,7 @@ export const searchMovies = async ({
       return []
     }
 
-    const movies: MovieType[] = json.Search.map((movie: any) => ({
+    const movies: MovieType[] = json.Search.map((movie: MovieAPI) => ({
       title: movie.Title,
       year: movie.Year,
       imdbID: movie.imdbID,

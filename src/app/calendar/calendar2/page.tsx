@@ -1,6 +1,8 @@
 import ListOfUsers from "@/components/ListOfUsers"
 import { ReactNode, Suspense } from "react"
 
+export const dynamic = "force-dynamic"
+
 export default function Calendar2(): ReactNode {
   return (
     <div className="flex flex-col">

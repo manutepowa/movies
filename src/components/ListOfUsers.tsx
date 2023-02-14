@@ -1,4 +1,12 @@
-async function getUsers(): Promise<any> {
+interface Comment {
+  postId: number
+  id: number
+  name: string
+  email: string
+  body: string
+}
+
+async function getUsers(): Promise<Comment[]> {
   const response = await fetch(
     "https://jsonplaceholder.typicode.com/comments",
     {
@@ -13,7 +21,7 @@ export default async function ListOfUsers(): Promise<JSX.Element> {
   return (
     <div>
       {users &&
-        users.map((user: any) => {
+        users.map((user: Comment) => {
           return <div key={user.id}>{user.name}</div>
         })}
     </div>
