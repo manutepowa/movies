@@ -2,7 +2,7 @@ import AsideContainer from "@/components/containers/AsideContainer"
 import MainContainer from "@/components/containers/MainContainer"
 import NewsNav from "@/components/News/NewsNav"
 import { getNews } from "@/services/news"
-
+// export const dynamic = "force-dynamic"
 interface NewsLayoutProps {
   children: JSX.Element
 }
