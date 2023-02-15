@@ -11,6 +11,7 @@
     "no-use-before-define": "off",
     "react/react-in-jsx-scope": "off",
     "no-unused-vars": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "prettier/prettier": [
       "error",
       {

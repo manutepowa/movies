@@ -1,6 +1,6 @@
 import { MovieType } from "@/context/MoviesContext"
 
-export const URL = "http://www.omdbapi.com/?apikey=4287ad07"
+export const URL = "http://www.omdbapi.com/?apikey=a0bb207a"
 
 interface MovieAPI {
   Title: string

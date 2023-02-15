@@ -2,12 +2,13 @@ import NavBarDesktop from "@/components/NavBar/NavBar"
 import NavToggle from "@/components/NavBar/NavToggle"
 import { SidebarProvider } from "@/components/NavBar/SidebarContext"
 import "@/styles/globals.css"
+import { ReactNode } from "react"
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+interface RootLayoutProps {
+  children: ReactNode
+}
+
+export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html className="h-full bg-white">
       <head />

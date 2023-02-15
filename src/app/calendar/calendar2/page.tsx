@@ -1,9 +1,7 @@
 import ListOfUsers from "@/components/ListOfUsers"
-import { ReactNode, Suspense } from "react"
+import { Suspense } from "react"
 
-export const dynamic = "force-dynamic"
-
-export default function Calendar2(): ReactNode {
+export default function Calendar2(): JSX.Element {
   return (
     <div className="flex flex-col">
       <h1 className="text-2xl text-center">Probando suspense</h1>
