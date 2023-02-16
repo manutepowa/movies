@@ -13,6 +13,7 @@ export default function NewsLayout({ children }: NewsLayoutProps): JSX.Element {
       <MainContainer>{children}</MainContainer>
       <AsideContainer>
         <Suspense fallback={<div>Cargando menú...</div>}>
+          {/* @ts-expect-error Server Component */}
           <NewsNav />
         </Suspense>
       </AsideContainer>

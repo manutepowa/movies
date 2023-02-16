@@ -1,9 +1,8 @@
 import { getNews, NewsType } from "@/services/news"
-import React from "react"
 
 import NewsLink from "./NewsLink"
 
-export default async function NewsNav(): Promise<JSX.Element> {
+export default async function NewsNav() {
   const news: NewsType[] = await getNews()
 
   return (

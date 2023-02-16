@@ -5,7 +5,7 @@ export async function generateStaticParams() {
   const response = await fetch(
     "https://www.parquecientificoumh.es/es/movil/api/noticias",
     {
-      cache: "default",
+      cache: "no-cache",
     }
   )
   const news = await response.json()
@@ -27,5 +27,10 @@ export default async function New({
     return singleNew.view_node.split("/").slice(-1)[0] === slug
   })
 
-  return <div>{renderedPage?.title}</div>
+  return (
+    <div>
+      <div>{renderedPage?.title}</div>
+      {/* Create banner with styles inline with a text and link */}
+    </div>
+  )
 }
