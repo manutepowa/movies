@@ -23,9 +23,9 @@ export default async function New({
 }): Promise<ReactNode> {
   const { slug } = params
   const news: NewsType[] = await getNews()
-  const renderedPage: NewsType = news.filter((singleNew) => {
+  const renderedPage: NewsType | undefined = news.find((singleNew) => {
     return singleNew.view_node.split("/").slice(-1)[0] === slug
   })
 
-  return <div>{renderedPage.title}</div>
+  return <div>{renderedPage?.title}</div>
 }
