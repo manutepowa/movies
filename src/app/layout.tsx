@@ -4,6 +4,10 @@ import { SidebarProvider } from "@/components/NavBar/SidebarContext"
 import "@/styles/globals.css"
 import { ReactNode } from "react"
 
+export const metadata = {
+  title: "Titlepage",
+}
+
 interface RootLayoutProps {
   children: ReactNode
 }
@@ -11,8 +15,7 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html className="h-full bg-white">
-      <head />
-      <body>
+      <body className="bg-manute">
         <div className="h-screen overflow-hidden">
           <SidebarProvider>
             <div className="flex h-full">
