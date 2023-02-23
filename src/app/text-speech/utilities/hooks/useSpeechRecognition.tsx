@@ -1,15 +1,9 @@
 "use client"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
-const SpeechRecognition =
-  (window && window.SpeechRecognition) ||
-  (window && window.webkitSpeechRecognition)
-const mic = new SpeechRecognition()
-mic.continuous = true
-mic.interimResults = true
-mic.lang = "es-ES"
-
-const synth = window && window.speechSynthesis
+let SpeechRecognition
+let mic: SpeechRecognition
+let synth: SpeechSynthesis
 export default function useSpeechRecognition() {
   const [recording, setRecording] = useState(false)
   const [transcript, setTranscript] = useState<string>("")
@@ -55,6 +49,19 @@ export default function useSpeechRecognition() {
       console.log(event.error)
     }
   }
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      SpeechRecognition =
+        window.SpeechRecognition || window.webkitSpeechRecognition
+      mic = new SpeechRecognition()
+      mic.continuous = true
+      mic.interimResults = true
+      mic.lang = "es-ES"
+      synth = window.speechSynthesis
+    }
+  }, [])
+
   return {
     recording,
     transcript,
