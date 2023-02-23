@@ -16,7 +16,7 @@ export default function Example() {
         {/* end movie app */}
       </MainContainer>
       <AsideContainer>
-        <h1>Contenido Dashboard</h1>
+        <h1>Contenido Aside</h1>
       </AsideContainer>
     </div>
   )

@@ -12,6 +12,12 @@ export const navigation: NavLinkType[] = [
   { name: "Dashboard", href: "/", icon: HomeIcon, current: true },
   { name: "Calendar", href: "/calendar", icon: CalendarIcon, current: false },
   { name: "News", href: "/news", icon: UserGroupIcon, current: false },
+  {
+    name: "Speech / Text",
+    href: "/text-speech",
+    icon: UserGroupIcon,
+    current: false,
+  },
   // {
   //   name: "Directory",
   //   href: "/directory",
