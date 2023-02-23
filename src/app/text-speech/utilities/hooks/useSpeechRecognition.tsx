@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 
 let SpeechRecognition
 let mic: SpeechRecognition
-let synth: SpeechSynthesis
+
 export default function useSpeechRecognition() {
   const [recording, setRecording] = useState(false)
   const [transcript, setTranscript] = useState<string>("")
@@ -20,12 +20,6 @@ export default function useSpeechRecognition() {
       setRecording(false)
       if (transcript !== "") {
         setTextList([...textList, transcript])
-        const speech = new window.SpeechSynthesisUtterance(transcript)
-        speech.volume = 1
-        speech.voice = synth.getVoices()[4]
-        speech.rate = 1
-        speech.pitch = 1
-        synth.speak(speech)
         setTranscript("")
       }
       console.log("Stopped Mic on Click")
@@ -58,7 +52,6 @@ export default function useSpeechRecognition() {
       mic.continuous = true
       mic.interimResults = true
       mic.lang = "es-ES"
-      synth = window.speechSynthesis
     }
   }, [])
 

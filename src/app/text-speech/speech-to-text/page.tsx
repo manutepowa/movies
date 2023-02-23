@@ -12,8 +12,8 @@ export default function SpeechToTextPage() {
     <div className="flex flex-col items-center gap-y-4">
       <h1 className="text-xl">Speech to text</h1>
       <Speech {...{ recording, handleListen }} />
-      <Text {...{ transcript }} />
       <TextList {...{ textList }} />
+      <Text {...{ transcript }} />
     </div>
   )
 }
