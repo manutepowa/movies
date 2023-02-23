@@ -7,7 +7,7 @@ export default async function NewsNav() {
 
   return (
     <ul>
-      {news.map((newsItem: NewsType, index: number) => {
+      {news.splice(0, 10).map((newsItem: NewsType, index: number) => {
         const link = newsItem.view_node.split("/").slice(-1)[0]
         return (
           <li key={index}>

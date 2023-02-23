@@ -10,7 +10,7 @@ export async function generateStaticParams() {
   )
   const news = await response.json()
 
-  return news.map((singleNew: NewsType) => {
+  return news.splice(0, 10).map((singleNew: NewsType) => {
     return {
       slug: singleNew.view_node.split("/").slice(-1)[0],
     }

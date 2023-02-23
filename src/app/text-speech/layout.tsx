@@ -1,3 +1,4 @@
+"use client"
 import AsideContainer from "@/components/containers/AsideContainer"
 import MainContainer from "@/components/containers/MainContainer"
 import Link from "next/link"
