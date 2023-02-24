@@ -24,9 +24,9 @@ export default function SpeechLayout({ children }: SpeechLayoutProps) {
           <li>
             <Link
               className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
-              href="/calendar/calendar2"
+              href="text-speech/grammar"
             >
-              Text to speech
+              Grammar check
             </Link>
           </li>
         </ul>
