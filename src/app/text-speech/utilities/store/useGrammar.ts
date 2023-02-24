@@ -3,6 +3,7 @@ import { create } from "zustand"
 interface GrammarType {
   text: string
   checkedText: string
+  loading: boolean
   updateText: (text: string) => void
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>
 }
@@ -18,23 +19,25 @@ const options = {
 }
 
 const useGrammar = create<GrammarType>((set, get) => ({
-  text: "",
+  text: "There is different types of texts and interactive exercises that practise the reading skills you need to do well in your studyes, to get ahead at work and to communicate in english in your free timerr.",
   checkedText: "",
+  loading: false,
   updateText: (text: string) => set({ text }),
   handleSubmit: async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const encodeParams = new URLSearchParams()
-    encodeParams.append("language", "es-ES")
+    encodeParams.append("language", "en-US")
     encodeParams.append("text", get().text)
 
+    set({ loading: true })
     const response = await fetch(options.url, {
       method: options.method,
       headers: options.headers,
       body: encodeParams,
     })
     const data = await response.json()
-    console.log({ data })
-    set({ checkedText: data.matches[0].message })
+    set({ checkedText: data })
+    set({ loading: false })
   },
 }))
 
