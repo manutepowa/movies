@@ -1,38 +1,39 @@
 "use client"
 import { SpeakerWaveIcon } from "@heroicons/react/24/solid"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
 interface PhraseProps {
   phrase: string
 }
 
-let synth: SpeechSynthesis
-let speech: SpeechSynthesisUtterance
 function useSpeechSynthesis({ phrase }: PhraseProps) {
+  const synth = useRef<SpeechSynthesis>()
+  const speech = useRef<SpeechSynthesisUtterance>()
   const [isPlaying, setIsPlaying] = useState(false)
   useEffect(() => {
     if (typeof window !== "undefined") {
-      synth = window.speechSynthesis
-      speech = new window.SpeechSynthesisUtterance(phrase)
-      speech.volume = 1
-      speech.voice = synth.getVoices()[4]
-      speech.rate = 1
-      speech.pitch = 1
+      synth.current = window.speechSynthesis
+      speech.current = new window.SpeechSynthesisUtterance(phrase)
+      speech.current.volume = 1
+      speech.current.voice = synth.current.getVoices()[4]
+      speech.current.rate = 1
+      speech.current.pitch = 1
 
-      speech.onend = function () {
+      speech.current.onend = function () {
         console.log("onend")
         setIsPlaying(false)
       }
     }
 
-    return () => {
-      synth.cancel()
-    }
+    // return () => {
+    //   console.log("cancel")
+    //   synth.cancel()
+    // }
   }, [])
 
   function play() {
     setIsPlaying(true)
-    synth.speak(speech)
+    synth.current?.speak(speech.current as SpeechSynthesisUtterance)
   }
   return {
     play,
