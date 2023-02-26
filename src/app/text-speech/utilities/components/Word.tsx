@@ -47,7 +47,7 @@ export default function Word({ word, match }: Props) {
               <span className="font-bold">Suggested correction: </span>
               <ol type="1">
                 {match.replacements
-                  .splice(0, 4)
+                  .slice(0, 4)
                   .map((replacement: string, index: number) => (
                     <li key={index}>
                       {index + 1}. {replacement.value}
