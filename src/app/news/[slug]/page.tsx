@@ -34,9 +34,29 @@ export default async function New({
   })
   // console.log(renderedPage)
   return (
-    <div className="flex flex-col items-center justify-center gap-y-4">
+    <div className="flex flex-col max-w-4xl mx-auto items-center justify-center gap-y-4">
       <h1 className="text-2xl">{renderedPage?.title}</h1>
-      <img src={url + renderedPage?.field_image} alt={renderedPage?.nid} />
+      <div className="flex max-w-[500px]">
+        <img src={url + renderedPage?.field_image} alt={renderedPage?.nid} />
+      </div>
+      <div>
+        {renderedPage?.field_tags.split(", ").map((tag, index) => {
+          return (
+            <span
+              key={index}
+              className="flex-nowrap bg-indigo-100 inline-block text-gray-700 text-xs font-semibold rounded-full px-2 py-1 mr-2"
+            >
+              {tag}
+            </span>
+          )
+        })}
+      </div>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: renderedPage?.body || "",
+        }}
+      />
+
       {/* Create banner with styles inline with a text and link */}
     </div>
   )

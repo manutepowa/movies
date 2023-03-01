@@ -1,4 +1,5 @@
 import ListOfUsers from "@/components/ListOfUsers"
+import Loading from "@/components/Loading"
 import { Suspense } from "react"
 
 export default function Calendar2(): JSX.Element {
@@ -11,7 +12,7 @@ export default function Calendar2(): JSX.Element {
           componente que está cargando, se verá en loading
         </li>
       </ul>
-      <Suspense fallback={<p className="p-8 bg-yellow-700">Loading........</p>}>
+      <Suspense fallback={<Loading />}>
         {/* @ts-expect-error Server Component */}
         <ListOfUsers />
       </Suspense>

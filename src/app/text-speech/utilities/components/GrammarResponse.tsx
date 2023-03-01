@@ -3,7 +3,7 @@ import useGrammar from "../store/useGrammar"
 import CorrectedText from "./CorrectedText"
 
 export default function GrammarResponse() {
-  const grammar = useGrammar().checkedText
+  const grammar: any = useGrammar().checkedText
   const loading = useGrammar().loading
   const text = useGrammar().text
 

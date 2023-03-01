@@ -1,5 +1,6 @@
 import AsideContainer from "@/components/containers/AsideContainer"
 import MainContainer from "@/components/containers/MainContainer"
+import Loading from "@/components/Loading"
 import NewsNav from "@/components/News/NewsNav"
 import { Suspense } from "react"
 // export const dynamic = "force-dynamic"
@@ -12,7 +13,7 @@ export default function NewsLayout({ children }: NewsLayoutProps): JSX.Element {
     <div className="relative z-0 flex flex-1 overflow-hidden">
       <MainContainer>{children}</MainContainer>
       <AsideContainer>
-        <Suspense fallback={<div>Cargando menú...</div>}>
+        <Suspense fallback={<Loading />}>
           {/* @ts-expect-error Server Component */}
           <NewsNav />
         </Suspense>

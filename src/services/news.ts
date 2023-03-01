@@ -4,7 +4,7 @@ export interface NewsType {
   title: string
   field_alineacion_imagen_noticia: string
   delta: string
-  body: string
+  body: string | null
   comment: string
   field_landing_page: string
   field_destacada_portada: string

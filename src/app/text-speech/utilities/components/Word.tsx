@@ -32,7 +32,7 @@ export default function Word({ word, match }: Props) {
   const [hoverRef, isHovered] = useHover()
   return (
     <span
-      ref={hoverRef}
+      ref={hoverRef as any}
       className="bg-red-200 py-1 px-2 rounded-sm relative cursor-pointer break-words"
     >
       {word}
@@ -48,7 +48,7 @@ export default function Word({ word, match }: Props) {
               <ol type="1">
                 {match.replacements
                   .slice(0, 4)
-                  .map((replacement: string, index: number) => (
+                  .map((replacement: any, index: number) => (
                     <li key={index}>
                       {index + 1}. {replacement.value}
                     </li>
