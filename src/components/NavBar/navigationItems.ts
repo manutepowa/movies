@@ -1,10 +1,8 @@
 import {
   CalendarIcon,
   HomeIcon,
-  MagnifyingGlassCircleIcon,
-  MapIcon,
-  MegaphoneIcon,
   UserGroupIcon,
+  FilmIcon,
 } from "@heroicons/react/24/outline"
 import { NavLinkType } from "./types"
 
@@ -16,6 +14,12 @@ export const navigation: NavLinkType[] = [
     name: "Speech / Text",
     href: "/text-speech",
     icon: UserGroupIcon,
+    current: false,
+  },
+  {
+    name: "Todo App",
+    href: "/todoapp",
+    icon: FilmIcon,
     current: false,
   },
   // {

@@ -1,6 +1,7 @@
 "use client"
 import { MoviesContext, MovieType } from "@/context/MoviesContext"
 import { useContext } from "react"
+import Loading from "./Loading"
 
 export default function ListOfMovies() {
   const { movies, query, loading } = useContext(MoviesContext)
@@ -8,7 +9,7 @@ export default function ListOfMovies() {
   return (
     <div className="mt-8">
       {loading ? (
-        <h1>Cargando...</h1>
+        <Loading />
       ) : (
         <div>
           {query === "" ? (
