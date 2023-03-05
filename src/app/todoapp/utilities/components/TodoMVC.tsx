@@ -1,13 +1,19 @@
+"use client"
 import React from "react"
+import { useTodoStore } from "../store/todo"
+import NewTodo from "./NewTodo"
 import TodoList from "./TodoList"
 
 function TodoMVC() {
+  const todosCount = useTodoStore((state) => state.todos.length)
+
   return (
-    <div className="bg-gray-300 w-full p-4">
+    <div className="todoapp">
+      <NewTodo />
       <TodoList />
-      <footer className="flex bg-gray-300 w-full">
+      <footer className="footer">
         <span className="todo-count">
-          <strong>0</strong> item left
+          <strong>{todosCount}</strong> item left
         </span>
         <ul className="filters">
           <li>

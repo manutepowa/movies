@@ -5,6 +5,7 @@ import { ReactNode } from "react"
 
 export const metadata = {
   title: "Titlepage",
+  // appLinks: [{}],
 }
 
 interface RootLayoutProps {
