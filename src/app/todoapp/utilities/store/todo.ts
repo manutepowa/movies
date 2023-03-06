@@ -1,17 +1,15 @@
 import { create } from "zustand"
-
-export interface Todo {
-  id: string
-  text: string
-  completed: boolean
-}
+import type { Todo, TodoID } from "../types"
+import { FILTER_TODO, FilterTodo } from "../types"
 
 export interface TodoStore {
   todos: Todo[]
   value: string
   setValue: (value: string) => void
+  filterTodo: FilterTodo
+  setFilterTodo: ({ filterValue }: { filterValue: FilterTodo }) => void
   addTodo: (todo: Todo) => void
-  removeTodo: ({ id }: Pick<Todo, "id">) => void
+  removeTodo: ({ id }: TodoID) => void
   changeCompleted: ({ id }: { id: string }) => void
 }
 
@@ -25,6 +23,9 @@ export const useTodoStore = create<TodoStore>((set, get) => ({
   todos: initialState,
   value: "",
   setValue: (value) => set({ value }),
+  filterTodo: FILTER_TODO.ALL,
+  setFilterTodo: ({ filterValue }: { filterValue: FilterTodo }) =>
+    set({ filterTodo: filterValue }),
   addTodo: (todo) => set((state) => ({ todos: [...state.todos, todo] })),
   removeTodo: ({ id }) =>
     set((state) => ({ todos: state.todos.filter((t) => t.id !== id) })),
