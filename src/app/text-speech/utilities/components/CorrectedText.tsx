@@ -9,7 +9,7 @@ export default function CorrectedText({ text, matches }: Props) {
     const errorText = text
     const arrayOfComponents = []
     let textIndex = 0
-    matches?.forEach((match: any, i: number) => {
+    matches?.forEach((match: any) => {
       const { offset, length } = match
       if (offset === textIndex) {
         const initial = errorText.substring(offset, offset + length)

@@ -14,7 +14,7 @@ interface RootLayoutProps {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html className="h-full bg-white invert">
+    <html className="h-full bg-white">
       <body className="bg-manute">
         <div className="h-screen overflow-hidden">
           <div className="flex h-full">

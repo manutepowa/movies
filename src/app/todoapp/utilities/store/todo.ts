@@ -19,7 +19,7 @@ const initialState: Todo[] = [
   { id: "3", text: "Learn Zustand", completed: false },
 ]
 
-export const useTodoStore = create<TodoStore>((set, get) => ({
+export const useTodoStore = create<TodoStore>((set) => ({
   todos: initialState,
   value: "",
   setValue: (value) => set({ value }),

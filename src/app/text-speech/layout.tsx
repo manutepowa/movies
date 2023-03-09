@@ -29,6 +29,14 @@ export default function SpeechLayout({ children }: SpeechLayoutProps) {
               Grammar check
             </Link>
           </li>
+          <li>
+            <Link
+              className="text-gray-600 hover:bg-gray-50 hover:text-gray-900 group flex items-center px-2 py-2 text-base font-medium rounded-md"
+              href="text-speech/grammarly"
+            >
+              Grammarly API
+            </Link>
+          </li>
         </ul>
       </AsideContainer>
     </div>
